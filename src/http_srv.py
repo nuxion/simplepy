@@ -17,7 +17,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         try:
             value = int(path)
             server.add(value)
-            time.sleep(3)
+            #time.sleep(3)
 
             self.wfile.write('Actual state: {}'.format(server.query()).encode())
         except ValueError:
