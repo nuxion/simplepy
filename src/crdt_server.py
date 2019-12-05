@@ -75,17 +75,22 @@ class Node:
             _idx = tmp.index(origin)
             del(tmp[_idx])
         port1 = random.choice(tmp)
-        return port1
+        _idx2 = tmp.index(port1)
+        del(tmp[_idx2])
+        port2 = random.choice(tmp)
+
+        return port1, port2
     
 
     def infect(self, data, origin=None):
 
         if origin:
-            port1 = self.choice_port(origin[1])
+            port1, port2 = self.choice_port(origin[1])
         else:
-            port1 = self.choice_port()
+            port1, port2 = self.choice_port()
         logger.debug("port1 {}".format(port1))
         self.send(data, port1)
+        self.send(data, port2)
         #time.sleep(WAIT)
         time.sleep(random.uniform(0, 1)*2)
 
